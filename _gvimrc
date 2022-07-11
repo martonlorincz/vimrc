@@ -5,7 +5,6 @@
 " Maximize gVim on Windows
 au GUIEnter * simalt ~x
 
-set background=dark
 set guioptions=
 set guifont=JetBrains_Mono:h10:cANSI:qDRAFT
 
