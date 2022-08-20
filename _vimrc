@@ -56,16 +56,6 @@ nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 
 "======================================================================================================================"
 
-" Vim plug
-call plug#begin()
-
-Plug 'vim-airline/vim-airline'
-Plug 'morhetz/gruvbox'
-Plug 'preservim/nerdtree'
-Plug 'vim-scripts/AutoComplPop'
-
-call plug#end()
-
 " Load Gruvbox dark
 autocmd vimenter * ++nested colorscheme gruvbox
 
