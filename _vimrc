@@ -88,8 +88,6 @@ nnoremap gm :resize<cr>
 nnoremap gv :vertical resize<cr>
 nnoremap g= <c-w>=
 
-nnoremap gn :NERDTreeToggle<cr>
-
 nnoremap <leader>3 *``
 nnoremap <leader>n :noh<cr>
 inoremap jk <esc>
