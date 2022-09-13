@@ -1,9 +1,7 @@
 " Vim with all enhancements
 source $VIMRUNTIME/defaults.vim
 
-" =============================================================================
-" Windows specific configs
-" =============================================================================
+"========= Windows specific settings =================================================================================="
 
 " Use the internal diff if available.
 " Otherwise use the special 'diffexpr' for Windows.
@@ -43,21 +41,17 @@ function MyDiff()
   endif
 endfunction
 
-" Vim file paths on Windows
-set directory=~/Vim/swapfiles//
-set backupdir=~/Vim/backups//
+" Vim file paths
+set directory=~/vimfiles/swapfiles//
+set backupdir=~/vimfiles/backups//
 set undofile
-set undodir=~/Vim/undofiles//
+set undodir=~/vimfiles/undofiles//
 
-set viminfo=%,'100,<50,s10,h,rA:,rB:,n~/Vim/.viminfo
-set shell=~/Git/bin/bash.exe
-
-nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+set viminfo=%,'100,<50,s10,h,rA:,rB:,n~/vimfiles/.viminfo
 
 "======================================================================================================================"
 
-" Load Gruvbox dark
-autocmd vimenter * ++nested colorscheme gruvbox
+set background=dark
 
 set encoding=UTF-8
 " set fileencoding=iso-8859-1
@@ -89,7 +83,6 @@ set relativenumber
 " Set cursor column and line
 " set cursorcolumn
 set cursorline
-
 set colorcolumn=120
 
 " Miscallenious
@@ -108,22 +101,32 @@ set scrolloff=2
 :let mapleader = ","
 noremap <leader>_ ddkP
 noremap <leader>- ddp
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 " TODO: when sourcing, keep the same highlighting
 nnoremap <leader>sv :source $MYVIMRC<cr>
 " :noh<cr>
 
+" TODO: Make these tcl specific
 iabbrev war #WARNING#
 iabbrev cur #CURR#
-iabbrev tdo TODO:
-" TODO: have some issues when used with operators
-nnoremap L $
-nnoremap H ^
+iabbrev tdo #TODO#
 nnoremap <leader>w :w<CR>
 
 " List grep results in locationlist
 command -nargs=1 Lg lvimgrep /<args>/ % | lopen
+" TODO: The tcl buftype mapping messes up <cr> key in qf list, fix it!
 nnoremap <expr> o &buftype ==# 'quickfix' ? "\<CR><c-w>j" : 'o'
 nnoremap gl :lopen<CR>
+
+augroup tclGroup
+    autocmd!
+    " Navigate by proc and namespace
+    autocmd FileType tcl nnoremap <c-n> :call search('^\s*proc', "w")<cr>
+    autocmd FileType tcl nnoremap <c-m> :call search('^\s*proc', "wb")<cr>
+
+    autocmd FileType tcl nnoremap <c-.> :call search('^\s*namespace eval', "w")<cr>
+    autocmd FileType tcl nnoremap <c-,> :call search('^\s*namespace eval', "wb")<cr>
+augroup end
 
 " Window management mappings
 " TODO: change position of the splits
@@ -131,6 +134,9 @@ nnoremap gj <c-w><c-j>
 nnoremap gk <c-w><c-k> 
 nnoremap gh <c-w>h
 nnoremap gl <c-w>l
+nnoremap gm :resize<cr>
+nnoremap gv :vertical resize<cr>
+nnoremap g= <c-w>=
 
 nnoremap <leader>3 *``
 nnoremap <leader>n :noh<cr>
@@ -140,8 +146,20 @@ inoremap <esc> <nop>
 nnoremap <leader>o o<esc>k
 nnoremap <leader>O O<esc>j
 
+" Window resizing
 nnoremap <C-J> <C-W>-
 nnoremap <C-K> <C-W>+
+nnoremap <C-H> <C-W><
+nnoremap <C-L> <C-W>>
+
+
+" Operator pending mappings
+" In/around next curly braces
+onoremap in{ :<c-u>normal! f{vi{<cr>
+onoremap an{ :<c-u>normal! f{va{<cr>
+" In/around previous(last) curly braces
+onoremap il{ :<c-u>normal! F}vi{<cr>
+onoremap al{ :<c-u>normal! F}va{<cr>
 
 " Whats up with this?
 " vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
@@ -155,4 +173,3 @@ let maplocalleader = "\\"
 "   autocmd FileType text nnoremap <buffer> <localleader>3 I"<esc>
 "   autocmd FileType text setlocal norelativenumber
 "augroup END
-

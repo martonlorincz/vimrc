@@ -2,14 +2,13 @@
 " GUI specific configuration
 " =============================================================================
 
-" Maximize gVim on Windows
+"========= Windows specific settings =================================================================================="
+
+" Make gVim full screen
 au GUIEnter * simalt ~x
 
-set background=dark
-set guioptions=
 set guifont=JetBrains_Mono:h10:cANSI:qDRAFT
 
-" Increase/decrease font size on Windows
 nnoremap <C-Up> :silent! let &guifont = substitute(
  \ &guifont,
  \ ':h\zs\d\+',
@@ -20,3 +19,7 @@ nnoremap <C-Down> :silent! let &guifont = substitute(
  \ ':h\zs\d\+',
  \ '\=eval(submatch(0)-1)',
  \ '')<CR>
+
+"======================================================================================================================"
+set guioptions=
+
