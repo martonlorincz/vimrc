@@ -47,6 +47,18 @@ set hlsearch
 set diffopt+=vertical
 set scrolloff=2
 
+"=====================================Plugin Configuration============================================================="
+
+" Load Gruvbox dark
+autocmd vimenter * ++nested colorscheme gruvbox
+
+let Tlist_Enable_Fold_Column = 0
+let Tlist_File_Fold_Auto_Close = 1
+
+nnoremap gn :NERDTreeToggle<cr>
+
+"======================================================================================================================"
+
 " Random stuff from Learn Vimscript the Hard way
 :let mapleader = ","
 noremap <leader>_ ddkP
