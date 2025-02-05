@@ -2,6 +2,13 @@ if !has('nvim')
     if v:version > 704
         " Vim with all enhancements
         source $VIMRUNTIME\defaults.vim
+        if has('unix')
+            colorscheme gruvbox
+        else 
+            " Load Gruvbox dark
+            " silent! is added to suppress errors
+            autocmd vimenter * ++nested silent! colorscheme gruvbox
+        endif
         set background=dark
         set listchars=tab:>-,trail:.,extends:>,precedes:<,space:.
         set list
@@ -51,6 +58,26 @@ if has('win32')
 endif
 "======================================================================================================================"
 
+"======================================== Plugin Configuration ========================================================"
+" NERDTree mappings
+nnoremap gnt :NERDTreeToggle<cr>
+
+" Taglist plugin configuration
+let Tlist_Enable_Fold_Column = 0
+let Tlist_File_Fold_Auto_Close = 1
+
+" Vim airline
+let g:airline_extensions = []
+"======================================================================================================================"
+
+"======================================== Environment Specific Configuration =========================================="
+" NOTE: The lines under Vim filepaths below can be moved over to the specified files to keep the same vimrc across envs
+" if has('unix')
+"     source ~/.vim/envConfig.vim
+" else 
+"     " source $VIM/envConfig.vim
+"     source ~\Vim\envConfig.vim
+" endif
 
 " Vim file paths
 set directory=~/vimfiles/swapfiles//
@@ -108,17 +135,7 @@ set scrolloff=2
 
 set spelllang=en_us
 " set spell --> Turn on spelling
-"=====================================Plugin Configuration============================================================="
 
-" Load Gruvbox dark
-autocmd vimenter * ++nested colorscheme gruvbox
-
-let Tlist_Enable_Fold_Column = 0
-let Tlist_File_Fold_Auto_Close = 1
-
-nnoremap gn :NERDTreeToggle<cr>
-
-"======================================================================================================================"
 set foldmethod=indent
 set foldlevelstart=99
 
