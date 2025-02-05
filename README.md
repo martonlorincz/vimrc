@@ -2,11 +2,8 @@
 *Vim config files*
 
 ## Branches:
- - main: Windows version with plugins, using *vim-plug*
- - win-noplug: Windows version without plugins
- - linux: Linux version with plugins
- - linux-noplug: Linux version without plugins
- - minimal: Doesn't contain plugins or platform specifc options
+ - main: Version with plugin-specific configuration
+ - minimal: No plugin-specific configuration
 
 ## Plugin Deployment Notes:
 ### Plugin Install:
